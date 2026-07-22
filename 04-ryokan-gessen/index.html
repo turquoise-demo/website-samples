@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>旅館 月泉 -GETSUSEN-（サンプル）｜静けさに、身をゆだねる。</title>
+<meta name="description" content="【サンプルサイト】旅館 月泉 — 四季の移ろいと源泉かけ流しの湯。静寂につつまれた、大人のための温泉旅館。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Zen+Old+Mincho:wght@400;500;600;700;900&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sumi:#1a221f;
+    --sumi-2:#242e2a;
+    --moss:#3a4a42;
+    --gold:#b39355;
+    --gold-l:#d0b884;
+    --paper:#f5f2ea;
+    --paper-2:#ece7db;
+    --ink:#2a302d;
+    --soft:#6a726c;
+    --serif:'Zen Old Mincho',serif;
+    --en:'Cormorant Garamond',serif;
+    --sans:'Zen Kaku Gothic New',sans-serif;
+    --ease:cubic-bezier(.22,.61,.36,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:2;font-weight:300;letter-spacing:.05em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  img{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 44px}
+  .en{font-family:var(--en);letter-spacing:.08em}
+
+  .sample-badge{position:fixed;left:18px;bottom:18px;z-index:9999;background:rgba(26,34,31,.9);color:var(--paper);font-size:.72rem;letter-spacing:.16em;padding:9px 17px;border-radius:2px;box-shadow:0 8px 24px rgba(0,0,0,.3);backdrop-filter:blur(6px);display:flex;align-items:center;gap:8px;pointer-events:none;border:1px solid rgba(179,147,85,.5)}
+  .sample-badge b{color:var(--gold-l);font-weight:600}
+  .sample-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(179,147,85,.25)}
+
+  header{position:fixed;top:0;width:100%;z-index:100;transition:.6s var(--ease)}
+  header.scrolled{background:rgba(26,34,31,.94);backdrop-filter:blur(12px)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:26px 0;transition:.5s}
+  header.scrolled .nav{padding:16px 0}
+  .brand{color:#fff;line-height:1.3}
+  .brand b{font-family:var(--serif);font-size:1.5rem;letter-spacing:.32em;font-weight:600;display:block}
+  .brand small{font-family:var(--en);font-size:.62rem;letter-spacing:.42em;color:var(--gold-l);display:block;margin-top:2px}
+  .gnav{display:flex;align-items:center;gap:34px}
+  .gnav a{color:rgba(255,255,255,.86);font-size:.82rem;letter-spacing:.12em;transition:.3s}
+  .gnav a:hover{color:var(--gold-l)}
+  .gnav .book{border:1px solid var(--gold);color:var(--gold-l) !important;padding:11px 26px;letter-spacing:.16em;transition:.4s}
+  .gnav .book:hover{background:var(--gold);color:var(--sumi) !important}
+  .burger{display:none;flex-direction:column;gap:6px;cursor:pointer;z-index:120}
+  .burger span{width:26px;height:1px;background:#fff;transition:.4s}
+
+  .hero{position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;background:var(--sumi)}
+  .hslide{position:absolute;inset:0;opacity:0;transition:opacity 2s var(--ease)}
+  .hslide img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 8s var(--ease)}
+  .hslide.active{opacity:1}.hslide.active img{transform:scale(1.13)}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(26,34,31,.4),rgba(26,34,31,.2) 40%,rgba(26,34,31,.65))}
+  .hero-in{position:relative;z-index:3;color:#fff;padding:0 20px}
+  .hero .sub{font-family:var(--en);font-style:italic;font-size:1.05rem;letter-spacing:.16em;color:var(--gold-l);opacity:0;animation:fi 1.4s var(--ease) .4s forwards}
+  .hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(2.3rem,5.4vw,4.4rem);line-height:1.5;letter-spacing:.14em;margin:22px 0;text-shadow:0 2px 30px rgba(0,0,0,.4);opacity:0;transform:translateY(26px);animation:up 1.5s var(--ease) .6s forwards}
+  .hero p{font-size:.92rem;letter-spacing:.18em;line-height:2.2;opacity:0;transform:translateY(20px);animation:up 1.5s var(--ease) .9s forwards}
+  @keyframes up{to{opacity:1;transform:none}}@keyframes fi{to{opacity:1}}
+  .hero .vline{position:absolute;bottom:0;left:50%;transform:translateX(-50%);z-index:3;width:1px;height:80px;background:linear-gradient(var(--gold),transparent);animation:vl 2.5s var(--ease) infinite}
+  @keyframes vl{0%{opacity:0;transform:translateX(-50%) scaleY(0);transform-origin:top}50%{opacity:1;transform:translateX(-50%) scaleY(1);transform-origin:top}100%{opacity:0;transform:translateX(-50%) scaleY(1);transform-origin:bottom}}
+  .hprog{position:absolute;bottom:34px;right:44px;z-index:3;display:flex;gap:10px}
+  .hprog button{width:32px;height:2px;border:none;padding:0;background:rgba(255,255,255,.3);cursor:pointer;position:relative;overflow:hidden}
+  .hprog button::after{content:"";position:absolute;inset:0;background:var(--gold-l);transform:scaleX(0);transform-origin:left}
+  .hprog button.on::after{animation:fill 6s linear forwards}
+  @keyframes fill{to{transform:scaleX(1)}}
+
+  .sec{padding:130px 0;position:relative}
+  .cap{text-align:center;margin-bottom:70px}
+  .cap .vt{font-family:var(--en);letter-spacing:.32em;font-size:.82rem;color:var(--gold);margin-bottom:16px}
+  .cap h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.9rem,3.6vw,2.7rem);letter-spacing:.12em;line-height:1.6}
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity 1.2s var(--ease),transform 1.2s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.14s}.d2{transition-delay:.28s}.d3{transition-delay:.42s}
+
+  /* concept */
+  .concept{background:var(--paper);text-align:center}
+  .concept .lead{font-family:var(--serif);font-weight:500;font-size:clamp(1.5rem,2.7vw,2.1rem);line-height:2.1;letter-spacing:.1em;max-width:820px;margin:0 auto 30px}
+  .concept p{max-width:640px;margin:0 auto;color:var(--soft);font-size:.95rem;line-height:2.4}
+  .concept .ornament{width:60px;height:1px;background:var(--gold);margin:44px auto 0;position:relative}
+  .concept .ornament::before{content:"月";position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--paper);padding:0 14px;font-family:var(--serif);color:var(--gold);font-size:.9rem}
+
+  /* rooms feature */
+  .rooms{background:var(--sumi);color:#fff}
+  .rooms .cap h2{color:#fff}
+  .feat{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center;margin-bottom:0}
+  .feat + .feat{margin-top:90px}
+  .feat.rev .txt{order:2}
+  .feat .pic{overflow:hidden;height:460px}
+  .feat .pic img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+  .feat:hover .pic img{transform:scale(1.06)}
+  .feat .txt{padding:0 6vw}
+  .feat .no{font-family:var(--en);font-size:1rem;letter-spacing:.2em;color:var(--gold-l)}
+  .feat h3{font-family:var(--serif);font-weight:500;font-size:1.9rem;letter-spacing:.1em;margin:12px 0 20px}
+  .feat p{color:rgba(255,255,255,.72);font-size:.92rem;line-height:2.2}
+
+  /* cuisine */
+  .cuisine{background:var(--paper-2)}
+  .cuisine .grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .cuisine .pic{position:relative}
+  .cuisine .pic img{width:100%;height:560px;object-fit:cover}
+  .cuisine .pic .fr{position:absolute;inset:18px;border:1px solid var(--gold);pointer-events:none}
+  .cuisine .vt{font-family:var(--en);letter-spacing:.3em;font-size:.82rem;color:var(--gold);margin-bottom:14px}
+  .cuisine h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,3vw,2.4rem);letter-spacing:.1em;line-height:1.6;margin-bottom:26px}
+  .cuisine p{color:var(--soft);font-size:.95rem;line-height:2.3;margin-bottom:16px}
+
+  /* omotenashi split */
+  .omote{position:relative;color:#fff;text-align:center;padding:150px 0;overflow:hidden}
+  .omote img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .omote::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,34,31,.55),rgba(26,34,31,.7))}
+  .omote .c{position:relative;z-index:2;max-width:720px;margin:0 auto;padding:0 20px}
+  .omote .vt{font-family:var(--en);letter-spacing:.3em;color:var(--gold-l);margin-bottom:20px}
+  .omote h2{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,3.4vw,2.6rem);letter-spacing:.12em;line-height:1.8;margin-bottom:26px}
+  .omote p{color:rgba(255,255,255,.82);font-size:.95rem;line-height:2.4}
+
+  /* plans */
+  .plans{background:var(--paper)}
+  .pcards{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:60px}
+  .pcard{background:#fff;overflow:hidden;transition:.6s var(--ease);box-shadow:0 24px 50px -34px rgba(26,34,31,.3)}
+  .pcard:hover{transform:translateY(-10px)}
+  .pcard .ph{height:240px;overflow:hidden}
+  .pcard .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+  .pcard:hover .ph img{transform:scale(1.07)}
+  .pcard .b{padding:30px 30px 36px;text-align:center}
+  .pcard .tag{font-family:var(--en);letter-spacing:.18em;font-size:.74rem;color:var(--gold)}
+  .pcard h3{font-family:var(--serif);font-weight:500;font-size:1.4rem;letter-spacing:.08em;margin:8px 0 14px}
+  .pcard p{font-size:.85rem;color:var(--soft);line-height:2;min-height:72px}
+  .pcard .price{margin-top:16px;font-family:var(--serif);color:var(--ink);font-size:1.1rem}
+  .pcard .price b{font-size:1.6rem;color:var(--gold);font-weight:600}
+
+  /* info */
+  .info{background:var(--sumi);color:#fff}
+  .info .grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+  .info .vt{font-family:var(--en);letter-spacing:.3em;color:var(--gold-l);margin-bottom:14px}
+  .info h2{font-family:var(--serif);font-weight:500;font-size:2rem;letter-spacing:.1em;margin-bottom:30px}
+  .info dl{display:grid;grid-template-columns:120px 1fr}
+  .info dt,.info dd{padding:16px 0;border-top:1px solid rgba(255,255,255,.14);font-size:.9rem}
+  .info dt{color:var(--gold-l);letter-spacing:.12em}
+  .info dd{color:rgba(255,255,255,.88)}
+  .info .cbox{text-align:center;border:1px solid rgba(179,147,85,.4);padding:56px 40px}
+  .info .cbox h3{font-family:var(--serif);font-weight:500;font-size:1.4rem;letter-spacing:.1em;margin-bottom:12px}
+  .info .cbox .tel{font-family:var(--en);font-size:2.4rem;letter-spacing:.05em;color:#fff;margin:10px 0}
+  .info .cbox small{display:block;color:rgba(255,255,255,.6);font-size:.78rem;letter-spacing:.12em;margin-bottom:26px}
+  .btn{display:inline-block;letter-spacing:.16em;padding:16px 44px;transition:.4s var(--ease);font-size:.86rem}
+  .btn-g{background:var(--gold);color:var(--sumi)}
+  .btn-g:hover{background:var(--gold-l);transform:translateY(-3px)}
+
+  footer{background:#141a17;color:rgba(255,255,255,.6);padding:70px 0 34px}
+  .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.1)}
+  .fb b{font-family:var(--serif);font-size:1.4rem;letter-spacing:.3em;color:#fff;display:block}
+  .fb small{font-family:var(--en);font-size:.62rem;letter-spacing:.4em;color:var(--gold-l);display:block;margin-top:4px}
+  .fb p{margin-top:20px;font-size:.84rem;line-height:2;max-width:320px}
+  .fcols{display:flex;gap:60px;flex-wrap:wrap}
+  .fcol h4{font-family:var(--en);font-size:.9rem;letter-spacing:.14em;color:#fff;margin-bottom:16px}
+  .fcol a{display:block;font-size:.84rem;margin-bottom:11px;transition:.3s}.fcol a:hover{color:var(--gold-l)}
+  .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:30px;font-size:.72rem;letter-spacing:.08em;opacity:.55}
+
+  @media(max-width:920px){
+    .wrap{padding:0 24px}.sec{padding:88px 0}
+    .gnav{position:fixed;inset:0;background:rgba(26,34,31,.98);flex-direction:column;justify-content:center;gap:30px;transform:translateX(100%);transition:.5s var(--ease)}
+    .gnav.open{transform:none}.gnav a{color:#fff !important;font-size:1rem}.burger{display:flex}
+    .burger.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .burger.x span:nth-child(2){opacity:0}
+    .burger.x span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    .feat,.cuisine .grid,.info .grid{grid-template-columns:1fr}
+    .feat .txt{padding:34px 6px 0}.feat.rev .txt{order:0}
+    .feat .pic{height:320px}.cuisine .pic img{height:400px}
+    .pcards{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}
+    .pcard p{min-height:auto}.omote{padding:90px 0}
+  }
+</style>
+</head>
+<body>
+
+<div class="sample-badge">これは <b>サンプルサイト</b> です ｜ SAMPLE</div>
+
+<header id="header">
+  <div class="wrap nav">
+    <a href="#top" class="brand"><b>月泉</b><small>GETSUSEN</small></a>
+    <nav class="gnav" id="gnav">
+      <a href="#concept">月泉について</a>
+      <a href="#rooms">客室と湯</a>
+      <a href="#cuisine">お食事</a>
+      <a href="#plans">宿泊プラン</a>
+      <a href="#info">アクセス</a>
+      <a href="#info" class="book">ご予約</a>
+    </nav>
+    <div class="burger" id="burger"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hslide"><img src="images/hero-exterior.png" alt="旅館外観"></div>
+  <div class="hslide"><img src="images/onsen.png" alt="露天風呂"></div>
+  <div class="hslide"><img src="images/room.png" alt="客室"></div>
+  <div class="hero-in">
+    <p class="sub">Since 1934 — A Quiet Hot Spring Retreat</p>
+    <h1>静けさに、<br>身をゆだねる。</h1>
+    <p>四季の移ろいと、源泉かけ流しの湯。<br>日常を離れ、心ほどける時間を。</p>
+  </div>
+  <div class="hprog" id="hprog"></div>
+  <div class="vline"></div>
+</section>
+
+<section class="sec concept" id="concept">
+  <div class="wrap reveal">
+    <div class="cap"><div class="vt">CONCEPT</div></div>
+    <div class="lead">なにもしない贅沢を、<br>ここに。</div>
+    <p>山あいにひっそりと佇む、全12室の小さな宿。喧騒から離れ、鳥のさえずりと湯の音だけが響く時間。月泉は、慌ただしい毎日を忘れ、ただ「今」を味わっていただくための宿です。おひとりおひとりに寄り添うおもてなしで、忘れられないひとときをお届けします。</p>
+    <div class="ornament"></div>
+  </div>
+</section>
+
+<section class="sec rooms" id="rooms">
+  <div class="wrap">
+    <div class="cap reveal"><div class="vt">ROOMS & ONSEN</div><h2>客室と、湯</h2></div>
+    <div class="feat reveal">
+      <div class="pic"><img src="images/room.png" alt="客室"></div>
+      <div class="txt">
+        <div class="no">01 — 客室</div>
+        <h3>庭を望む、静寂の間</h3>
+        <p>全室から美しい日本庭園を望む、和モダンの客室。畳の香りと障子ごしのやわらかな光につつまれ、時を忘れてお過ごしいただけます。一部客室には、専用の露天風呂をご用意しております。</p>
+      </div>
+    </div>
+    <div class="feat rev reveal">
+      <div class="txt">
+        <div class="no">02 — 温泉</div>
+        <h3>源泉かけ流しの、露天</h3>
+        <p>地中深くから湧き出る、天然温泉。四季折々の景色を眺めながら、とろりとした湯にゆっくりと身をゆだねる。夜には満天の星、朝には清々しい木漏れ日。時間ごとに表情を変える湯浴みをお愉しみください。</p>
+      </div>
+      <div class="pic"><img src="images/onsen.png" alt="露天風呂"></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec cuisine" id="cuisine">
+  <div class="wrap grid">
+    <div class="pic reveal"><img src="images/cuisine.png" alt="会席料理"><div class="fr"></div></div>
+    <div class="reveal d1">
+      <div class="vt">CUISINE</div>
+      <h2>その土地の恵みを、<br>一皿ずつ。</h2>
+      <p>旬の地の食材を、料理長がていねいに仕立てる会席料理。目にも美しい盛り付けと、素材本来の味わい。季節ごとに献立を変え、その時季にしか味わえない一期一会のお料理でおもてなしいたします。</p>
+      <p>朝は、炊きたての土鍋ごはんと滋味あふれる小鉢を。一日のはじまりを、やさしく満たします。</p>
+    </div>
+  </div>
+</section>
+
+<section class="omote">
+  <img src="images/okami.png" alt="おもてなし">
+  <div class="c reveal">
+    <div class="vt">OMOTENASHI</div>
+    <h2>おもてなしとは、<br>気配りの積み重ね。</h2>
+    <p>お客様が言葉にされる前に、そっと寄り添う。月泉のスタッフ一同が大切にしているのは、そんな「察するこころ」です。過度な干渉はせず、けれど必要なときには、いつでもおそばに。心地よい距離感で、皆さまをお迎えいたします。</p>
+  </div>
+</section>
+
+<section class="sec plans" id="plans">
+  <div class="wrap">
+    <div class="cap reveal"><div class="vt">STAY PLANS</div><h2>宿泊プラン</h2></div>
+    <div class="pcards">
+      <article class="pcard reveal">
+        <div class="ph"><img src="images/guests.png" alt="スタンダード"></div>
+        <div class="b"><div class="tag">STANDARD</div><h3>四季会席プラン</h3><p>旬の会席料理と源泉かけ流しの湯を愉しむ、月泉のスタンダードプラン。</p><div class="price">1泊2食 <b>¥28,000</b> 〜</div></div>
+      </article>
+      <article class="pcard reveal d1">
+        <div class="ph"><img src="images/room.png" alt="露天付客室"></div>
+        <div class="b"><div class="tag">PREMIUM</div><h3>露天風呂付客室プラン</h3><p>お部屋の露天風呂で、誰にも邪魔されない湯浴みを心ゆくまで。</p><div class="price">1泊2食 <b>¥42,000</b> 〜</div></div>
+      </article>
+      <article class="pcard reveal d2">
+        <div class="ph"><img src="images/cuisine.png" alt="記念日"></div>
+        <div class="b"><div class="tag">ANNIVERSARY</div><h3>記念日プラン</h3><p>特別な日を彩る、特別会席とお祝いのしつらえ。大切な方と過ごす一夜に。</p><div class="price">1泊2食 <b>¥38,000</b> 〜</div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec info" id="info">
+  <div class="wrap grid">
+    <div class="reveal">
+      <div class="vt">ACCESS & INFORMATION</div>
+      <h2>宿の概要</h2>
+      <dl>
+        <dt>宿名</dt><dd>旅館 月泉（サンプル）</dd>
+        <dt>創業</dt><dd>昭和9年（1934年）</dd>
+        <dt>客室数</dt><dd>全12室</dd>
+        <dt>泉質</dt><dd>単純温泉（源泉かけ流し）</dd>
+        <dt>所在地</dt><dd>〒000-0000 〇〇県〇〇郡〇〇町 温泉 0-0</dd>
+        <dt>アクセス</dt><dd>〇〇駅より送迎バス約20分</dd>
+        <dt>チェックイン</dt><dd>15:00 ／ アウト 11:00</dd>
+      </dl>
+    </div>
+    <div class="reveal d2">
+      <div class="cbox">
+        <h3>ご予約・お問い合わせ</h3>
+        <div class="tel">0000-00-0000</div>
+        <small>受付時間 9:00 – 20:00</small>
+        <a href="#" class="btn btn-g">オンライン予約へ</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="fb">
+        <b>月泉</b><small>GETSUSEN</small>
+        <p>静けさに、身をゆだねる。<br>四季と湯につつまれた、大人のための温泉旅館。（本サイトはサンプルです）</p>
+      </div>
+      <div class="fcols">
+        <div class="fcol"><h4>STAY</h4><a href="#rooms">客室</a><a href="#rooms">温泉</a><a href="#cuisine">お食事</a><a href="#plans">宿泊プラン</a></div>
+        <div class="fcol"><h4>ABOUT</h4><a href="#concept">月泉について</a><a href="#info">アクセス</a><a href="#">よくあるご質問</a></div>
+        <div class="fcol"><h4>RESERVE</h4><a href="#info">ご予約</a><a href="#info">お問い合わせ</a></div>
+      </div>
+    </div>
+    <div class="fbot"><span>© 2026 GETSUSEN Ryokan（サンプル）All rights reserved.</span><span>Privacy Policy</span></div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    const s=[...document.querySelectorAll('.hslide')],w=document.getElementById('hprog');let c=0,t;const IV=6000;
+    s.forEach((_,i)=>{const b=document.createElement('button');b.onclick=()=>go(i,1);w.appendChild(b);});
+    const d=[...w.children];
+    function p(){s.forEach((x,i)=>x.classList.toggle('active',i===c));d.forEach((x,i)=>{x.classList.remove('on');if(i===c){void x.offsetWidth;x.classList.add('on');}});}
+    function go(i,m){c=(i+s.length)%s.length;p();if(m){clearInterval(t);st();}}
+    function st(){t=setInterval(()=>go(c+1),IV);}p();st();
+  })();
+  const h=document.getElementById('header');const os=()=>h.classList.toggle('scrolled',scrollY>60);addEventListener('scroll',os);os();
+  const bg=document.getElementById('burger'),gn=document.getElementById('gnav');
+  bg.onclick=()=>{bg.classList.toggle('x');gn.classList.toggle('open');};
+  gn.querySelectorAll('a').forEach(a=>a.onclick=()=>{bg.classList.remove('x');gn.classList.remove('open');});
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>ウェブサイト制作サンプル一覧</title>
+<style>
+  :root {
+    --bg: #f7f6f3;
+    --card: #ffffff;
+    --text: #2b2b2b;
+    --sub: #767370;
+    --accent: #b08d57;
+    --border: #e6e2dc;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px; }
+  header { text-align: center; margin-bottom: 40px; }
+  header .en {
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  header h1 { font-size: 24px; font-weight: 600; letter-spacing: 0.05em; }
+  header p { font-size: 13px; color: var(--sub); margin-top: 10px; }
+  .list { display: grid; gap: 14px; }
+  a.card {
+    display: block;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 20px;
+    text-decoration: none;
+    color: var(--text);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  a.card:active { transform: scale(0.985); }
+  @media (hover: hover) {
+    a.card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.07); transform: translateY(-2px); }
+  }
+  .card .num {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .card .name { font-size: 16px; font-weight: 600; }
+  .card .desc { font-size: 12.5px; color: var(--sub); margin-top: 4px; }
+  .card .arrow { float: right; color: var(--accent); font-size: 14px; margin-top: -30px; }
+  footer { text-align: center; margin-top: 48px; font-size: 11px; color: var(--sub); letter-spacing: 0.08em; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="en">Website Samples</div>
+    <h1>ウェブサイト制作サンプル</h1>
+    <p>各カードをタップするとサンプルサイトが開きます</p>
+  </header>
+  <div class="list">
+    <a class="card" href="01-nagi-coffee/">
+      <div class="num">SAMPLE 01 ｜ カフェ・ロースタリー</div>
+      <div class="name">NAGI COFFEE &amp; ROASTERY</div>
+      <div class="desc">静けさを、一杯に。</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="card" href="02-yamato-kensetsu/">
+      <div class="num">SAMPLE 02 ｜ 総合建設業</div>
+      <div class="name">大和建設株式会社</div>
+      <div class="desc">未来の景色を、確かな技術で。</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="card" href="03-techno-seimitsu/">
+      <div class="num">SAMPLE 03 ｜ 精密部品製造</div>
+      <div class="name">テクノ精密工業株式会社</div>
+      <div class="desc">精度は、信頼の言葉。</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="card" href="04-ryokan-gessen/">
+      <div class="num">SAMPLE 04 ｜ 旅館・宿泊業</div>
+      <div class="name">旅館 月泉 -GETSUSEN-</div>
+      <div class="desc">静けさに、身をゆだねる。</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="card" href="05-hidamari-clinic/">
+      <div class="num">SAMPLE 05 ｜ クリニック・医療</div>
+      <div class="name">ひだまりケアクリニック</div>
+      <div class="desc">地域とともに、こころに寄り添う医療を。</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="card" href="06-hair-atelier-lumiere/">
+      <div class="num">SAMPLE 06 ｜ 美容室・サロン</div>
+      <div class="name">hair atelier LUMIÈRE</div>
+      <div class="desc">あなたの美しさに、光を。</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="card" href="07-mirai-lifeline/">
+      <div class="num">SAMPLE 07 ｜ 設備・ライフライン</div>
+      <div class="name">みらいライフライン株式会社</div>
+      <div class="desc">暮らしのライフラインを、まもる。</div>
+      <div class="arrow">→</div>
+    </a>
+    <a class="card" href="08-hoshi-no-terrace/">
+      <div class="num">SAMPLE 08 ｜ グランピング・レジャー</div>
+      <div class="name">星のテラス グランピングリゾート</div>
+      <div class="desc">森と、星と、非日常。</div>
+      <div class="arrow">→</div>
+    </a>
+  </div>
+  <footer>これらはすべて架空の企業によるデザインサンプルです</footer>
+</div>
+</body>
+</html>
